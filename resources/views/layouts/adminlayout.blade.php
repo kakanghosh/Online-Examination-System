@@ -4,7 +4,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>@yield('title')</title>
 	<script type="text/javascript" src="{{asset('js')}}/jquery-3.2.1.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/app.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/bootstrap-theme.min.css">
+	<link rel="shortcut icon" href="{{asset('')}}/logo.ico" type="image/x-icon">
 	<style type="text/css">
 		body{
 			background-color: white;

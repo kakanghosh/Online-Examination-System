@@ -1,42 +1,44 @@
 @extends('layouts.userlayout')
 @section('title')
-Result
+Quiz Maker | Quiz Hostory
 @endsection
 
 
 @section('style')
-	<style type="text/css">
-		table{
-			border-collapse: collapse;
-			width: 50%;
-		}
-		th{
-			color: red;
-		}
-		table, td, th {
-    		border: 1px solid black;
-    		text-align: left;
-		}
-
-	</style>
 @endsection
 
 @section('maincontent')
-	<h2>Quiz Title: <span style="font-size: 20px;color: blue;">{{$examtitle}}</span></h2>
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Result</th>
-		</tr>
-	@foreach($resultset as $result)
-		<tr>
-			<td>
-				{{$result[0]}} 
-			</td>
-			<td>
-				{{$result[1]}}%
-			</td>
-		</tr>
-	@endforeach
-	</table>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-10">
+				<h2>Quiz Title: <span class="text-primary">{{$examtitle}}</span></h2>
+				<table class="table-bordered table-condensed table-hover table-striped table-responsive">
+					<tr>
+					<th>Name</th>
+					<th>Result</th>
+					</tr>
+					@foreach($resultset as $result)
+						<tr>
+							<td>
+								{{$result[0]}} 
+							</td>
+							<td>
+								{{$result[1]}}%
+							</td>
+						</tr>
+					@endforeach
+				</table>
+			</div>
+		</div>
+	</div>
+
+	
+@endsection
+
+@section('script')
+<script type="text/javascript">
+		$('#allexams').attr('class','active');
+</script>
 @endsection

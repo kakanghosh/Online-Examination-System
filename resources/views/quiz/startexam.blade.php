@@ -1,8 +1,9 @@
+
 @extends('layouts.userlayout')
 
 @section('title')
 @if(session()->has('examtitle'))
-	{{session('examtitle')}}
+	Quiz Maker | {{session('examtitle')}}
 @endif
 @endsection
 

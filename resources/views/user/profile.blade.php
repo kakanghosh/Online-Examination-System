@@ -1,72 +1,68 @@
 @extends('layouts.userlayout')
 @section('title')
-Profile
+Quiz Maker | Profile
 @endsection
 
 @section('style')
-	<style type="text/css">
-		table{
-			border-collapse: collapse;
-		}
-		th{
-			color: red;
-		}
-		table, td, th {
-    		border: 1px solid black;
-    		text-align: left;
-		}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="{{asset('css/mycss')}}/userprofile.style.css">
 @endsection
 
 @section('maincontent')
 
-	@if(session()->has('changepassword'))
-		<h3>{{session('changepassword')}}</h3>
-	@endif
-	
-	<table>
-		<tr>
-			<td colspan="2">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-md-2 text-center">
 				@if( $member->gender == 'Male')
 					<img src="{{asset('profile_pic')}}/male.jpg" width="150" height="150">
 				@elseif($member->gender == 'Female')
 					<img src="{{asset('profile_pic')}}/female.jpg" width="150" height="150">	
-				@endif	 
-			</td>
-		</tr>
-		<tr> 
-			<td>Name </td> 
-			<td>
-				{{ $member->first_name }}, {{ $member->last_name }}
-			</td>
-		</tr>
-		<tr>
-			<td>User Name </td>
-			<td>{{ $member->user_name }}</td>
-		</tr>
-		<tr>
-			<td>Gender </td> 
-			<td>{{ $member->gender }}</td> 
-		</tr>
-		<tr>
-			<td>Date Of Birth </td> 
-			<td>{{ $member->dob }}</td> 
-		</tr>
-		<tr>
-			<td>Email </td> 
-			<td>{{ $member->email }}</td> 
-		</tr>
-		<tr >
-			<td colspan="2">
-				<a href="{{route('User.changePassword')}}">Change Password</a>
-			</td>
-		</tr>
-		
-	</table>	
+				@endif
+				<form>
+					<button class="btn btn-block bg-primary text-center">Change Picture</button>
+				</form>
+			</div>
+
+			<div class="col-lg-6 col-md-10 font-size-2">
+				@if(session()->has('changepassword'))
+					<div class="alert alert-success alert-dismissable">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						{{session('changepassword')}}
+					</div>
+				@endif
+				<p>
+					<hr><span class="text-primary">Name: </span> 
+					{{ $member->first_name }} {{ $member->last_name }}<hr>
+				</p>
+				<p>
+					<span class="text-primary">User Name: </span>
+					{{ $member->user_name }}<hr>
+				</p>
+				<p>
+					<span class="text-primary">Gender: </span>
+					{{ $member->gender }}<hr>
+				</p>
+				<p>
+					<span class="text-primary">Birth Of Date: </span>
+				    {{ $member->dob }}<hr>
+				</p>
+				<p>
+					<span class="text-primary">Email:  </span>
+					{{ $member->email }}<hr>
+				</p>
+				<p>
+					<a href="{{route('User.changePassword')}}" class="font-size-3 text-info">Change Password</a><hr>
+				</p>
+			</div>
+		</div>
+	</div>
+	
 @endsection
 
 @section('script')
-	<script type="text/javascript" src="{{ asset('js') }}/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="{{ asset('js') }}/userprofile.js"></script>
-@endsection 
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#profile').attr('class','active');
+		});
+	</script>
+@endsection

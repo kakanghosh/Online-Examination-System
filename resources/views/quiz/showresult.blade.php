@@ -1,6 +1,6 @@
 @extends('layouts.userlayout')
 @section('title')
-Result
+Quiz Maker | Quiz Result
 @endsection
 
 @section('maincontent')

@@ -57,13 +57,19 @@ class QuizController extends Controller
     public function saveQuestionLocally(Request $request){
 
         $validator = Validator::make($request->all(),[
-                'qsn' => 'required',
+                'qsn' => 'required|min:5',
                 'opt.*' => 'required',
                 'correct_ans' => 'required'
-        ]);
+        ],
+        [
+            'qsn.required' => 'Please type a  Question',
+            'qsn.min' => 'Question Length must  minimum 5 characters long',
+            'opt.*.required' => 'Please fill the option field',
+            'correct_ans.required' => 'Please fill the correct answer field'  
+        ]
+    );
     
         if ($validator->fails()) {
-            $request->session()->flash('error','Field is can not be empty');
             return redirect()->route('Quiz.setQuizQuestion')
                                 ->withErrors($validator);
         }
@@ -145,18 +151,13 @@ class QuizController extends Controller
 
 
     public function finishCreatingQuiz(Request $request){
-        $minimumQues = 2;
-        $userid = $request->session()->get('userid');
-        //return $userid;
-        if ($request->session()->has('questionset')) {
-           
-            $questions = $request->session()->get('questionset');
 
-            /*echo "<pre>";
-            print_r($questions);
-            echo "</pre>";
-            return;*/
-           
+        $minimumQues = 2;
+        
+        if ($request->session()->has('questionset')) {
+
+            $userid = $request->session()->get('userid');   
+            $questions = $request->session()->get('questionset');
            //Checking for minimum question in set
             if (sizeof($questions) >= $minimumQues) {
                 $title = $request->session()->get('quiztitle');
@@ -164,6 +165,7 @@ class QuizController extends Controller
                                 ->insertGetId([
                                     'question_set_title' => $title,
                                     'user_id' => $userid,
+                                    'status' => '0',
                                     'date_time' => date("Y-m-d h:i:s")
                                 ]); 
                 //Inserting all the question of a question set                    
@@ -189,10 +191,14 @@ class QuizController extends Controller
                 $request->session()->forget('questionset');
             }else{
                 return 'Minimum number of question not full fill : minimum '.$minimumQues;
+                //Here will be return error message
             }
            
+        }else{
+            //Here will be return error message
+            return 'Minimum number of question not full fill : minimum '.$minimumQues;
         }
-        return redirect()->route('User.index');
+        return redirect()->route('Quiz.showAllExams');
     }
 
 

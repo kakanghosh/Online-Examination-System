@@ -43,7 +43,6 @@ Member List
 					<td><a href=" {{route('Admin.editMemberDetails',[$user->user_id])}} ">Edit</a></td>
 				</tr>
 			@endif
-		<br>
 	@endforeach
 	</table>
 

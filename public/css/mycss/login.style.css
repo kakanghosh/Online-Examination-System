@@ -1,0 +1,23 @@
+
+body{
+	background-color: #fff;
+}
+td{
+	padding-bottom: 10px;
+}
+.login-form-div{
+	background: #fff;
+	margin-top: 120px;
+	padding-top: 2px;
+	border: 3px solid #d9edf7;	
+}
+
+.login-form{
+	padding: 10px;
+	background: #fff;
+	color: #000;
+}
+
+.simple-padding{
+	padding-bottom: 30px;
+}

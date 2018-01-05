@@ -7,8 +7,8 @@ class Question{
 	private $question = '';
 	private $question_type = '';
 	private $difficulty_level = '';
-	private $options_list = array();
-	private $correct_answer = array();
+	private $options_list = [];
+	private $correct_answer = [];
 
 	public function __construct(){
 		//Default constructor
